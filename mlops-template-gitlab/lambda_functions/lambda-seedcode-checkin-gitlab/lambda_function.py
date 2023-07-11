@@ -138,11 +138,11 @@ def lambda_handler(event, context):
     # Create the GitLab Project
     try:
         if group_id is None:
-            build_project = gl.projects.create({'name': gitlab_project_name_build})
             print('group id foi none')
+            build_project = gl.projects.create({'name': gitlab_project_name_build})
         else:
-            build_project = gl.projects.create({'name': gitlab_project_name_build, 'namespace_id': int(group_id)})
             print('group id nao foi none')
+            build_project = gl.projects.create({'name': gitlab_project_name_build, 'namespace_id': int(group_id)})
     except Exception as e:
         logging.error("The Project could not be created using the GitLab API..")
         logging.error(e)
