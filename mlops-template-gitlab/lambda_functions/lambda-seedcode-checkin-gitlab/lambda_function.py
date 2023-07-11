@@ -133,9 +133,8 @@ def lambda_handler(event, context):
     print('group id antes - ' + group_id)
     if group_id in ['None', 'none']:
         group_id = None
+        print('caiu no groupid none')
 
-
-    print('group id depois - ' + group_id)
     # Create the GitLab Project
     try:
         if group_id is None:
