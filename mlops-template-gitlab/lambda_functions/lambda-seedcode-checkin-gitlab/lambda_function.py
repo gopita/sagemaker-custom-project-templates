@@ -139,7 +139,7 @@ def lambda_handler(event, context):
     try:
         if group_id is None:
             print('group id foi none')
-            build_project = gl.projects.create({'name': gitlab_project_name_build})
+            build_project = gl.projects.create({'name': 'test-buildz-new'})
         else:
             print('group id nao foi none')
             build_project = gl.projects.create({'name': gitlab_project_name_build, 'namespace_id': int(group_id)})
@@ -154,7 +154,7 @@ def lambda_handler(event, context):
     
     try:
         if group_id is None:
-            deploy_project = gl.projects.create({'name': gitlab_project_name_deploy})
+            deploy_project = gl.projects.create({'name': 'test-deployz-new'})
         else:
             deploy_project = gl.projects.create({'name': gitlab_project_name_deploy, 'namespace_id': int(group_id)})
     except Exception as e:
