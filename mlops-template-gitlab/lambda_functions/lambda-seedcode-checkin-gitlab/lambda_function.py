@@ -125,18 +125,25 @@ def lambda_handler(event, context):
  
     # Configure SDKs for GitLab and S3
     gl = gitlab.Gitlab(gitlab_server_uri, private_token=gitlab_private_token)
+    print('gitlab server url - ' + gitlab_server_uri)
+    print('gitlab private token - ' + gitlab_private_token)
     s3 = boto3.client('s3')
 
     group_id = os.environ["GroupId"]
+    print('group id antes - ' + group_id)
     if group_id in ['None', 'none']:
         group_id = None
 
+
+    print('group id depois - ' + group_id)
     # Create the GitLab Project
     try:
         if group_id is None:
             build_project = gl.projects.create({'name': gitlab_project_name_build})
+            print('group id foi none')
         else:
             build_project = gl.projects.create({'name': gitlab_project_name_build, 'namespace_id': int(group_id)})
+            print('group id nao foi none')
     except Exception as e:
         logging.error("The Project could not be created using the GitLab API..")
         logging.error(e)
